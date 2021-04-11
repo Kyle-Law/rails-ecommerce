@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_11_134942) do
+ActiveRecord::Schema.define(version: 2021_04_11_191020) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,6 +43,7 @@ ActiveRecord::Schema.define(version: 2021_04_11_134942) do
     t.bigint "category_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "is_promo"
     t.index ["brand_id"], name: "index_items_on_brand_id"
     t.index ["category_id"], name: "index_items_on_category_id"
   end
@@ -97,6 +98,10 @@ ActiveRecord::Schema.define(version: 2021_04_11_134942) do
     t.string "voucher_code"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "item_categories", default: [], array: true
+    t.string "item_brands", default: [], array: true
+    t.string "item_keyword", default: [], array: true
+    t.string "description"
   end
 
   create_table "roles", force: :cascade do |t|
