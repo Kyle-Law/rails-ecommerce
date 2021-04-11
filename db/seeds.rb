@@ -8,17 +8,18 @@
 
 
 
-Category.create(name:'Category 1')
-Category.create(name:'Category 2')
-Category.create(name:'Category 3')
+Category.find_or_create_by(name:'Category 1') unless Category.find_by(name: 'Category 1')
+Category.find_or_create_by(name:'Category 2') unless Category.find_by(name: 'Category 2')
+Category.find_or_create_by(name:'Category 3') unless Category.find_by(name: 'Category 3')
 
 %w[admin guest customer service].each do |role|
-  Role.find_or_create_by({ name: role })
+  Role.find_or_create_by({ name: role }) unless Role.find_by(name: role)
 end
 
-10.times do |n|
-  User.create(email:"user#{n}@hotmail.com",password:"testing",role_id:(Role.count-1)+1)
-end
+# 10.times do |n|
+  # test@gmail.com, ps: tester
+  # User.find_or_create_by(email:"user#{n}@hotmail.com", password:"testing", role_id:(Role.count-1)+1) unless User.find_by(email:"user#{n}@hotmail.com")
+# end
 
 ['Standard Delivery (7 Days)', 'Express Delivery (2 Days)', 'Self-Collect'].each do |mode|
   DeliveryMode.find_or_create_by({ name: mode })
@@ -26,7 +27,7 @@ end
 
 20.times do |n|
   brand_name = Faker::Appliance.brand
-  Brand.create(name:brand_name) unless Brand.find_by(name: brand_name)
+  Brand.find_or_create_by(name:brand_name) unless Brand.find_by(name: brand_name)
 end
 
 100.times do |n|
