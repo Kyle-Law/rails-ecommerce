@@ -32,5 +32,5 @@ end
 
 100.times do |n|
   item_name = Faker::Appliance.equipment
-  Item.create(name:item_name, price:rand(500)+1,category_id:rand(Category.count-1)+1,brand_id:rand(Brand.count-1)+1,description:BetterLorem.w(50,true))
+  Item.create(name:item_name, price:rand(500)+1,category_id:rand(Category.count-1)+1,brand_id:rand(Brand.count-1)+1,description:BetterLorem.w(50,true),quantity:rand(200))
 end

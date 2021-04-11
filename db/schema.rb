@@ -50,6 +50,8 @@ ActiveRecord::Schema.define(version: 2021_04_11_134942) do
   create_table "items_promotions", id: false, force: :cascade do |t|
     t.bigint "promotion_id", null: false
     t.bigint "item_id", null: false
+    t.index ["item_id", "promotion_id"], name: "index_items_promotions_on_item_id_and_promotion_id"
+    t.index ["promotion_id", "item_id"], name: "index_items_promotions_on_promotion_id_and_item_id"
   end
 
   create_table "order_items", force: :cascade do |t|
@@ -74,7 +76,7 @@ ActiveRecord::Schema.define(version: 2021_04_11_134942) do
     t.text "shipping_address"
     t.string "notification_phone_number"
     t.string "voucher_code"
-    t.bigint "delivery_mode_id", null: false
+    t.bigint "delivery_mode_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["delivery_mode_id"], name: "index_orders_on_delivery_mode_id"
