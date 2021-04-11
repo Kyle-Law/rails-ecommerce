@@ -5,3 +5,17 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+20.times do |n|
+  brand_name = Faker::Appliance.brand
+  Brand.create(name:brand_name) unless Brand.find_by(name: brand_name)
+end
+
+Category.create(name:'Category 1')
+Category.create(name:'Category 2')
+Category.create(name:'Category 3')
+
+100.times do |n|
+  item_name = Faker::Appliance.equipment
+  Item.create(name:item_name, price:rand(500)+1,category_id:rand(Category.count-1)+1,brand_id:rand(Brand.count-1)+1,description:BetterLorem.w(50,true))
+end
