@@ -1,0 +1,49 @@
+<div class="container">
+<h4 class="my-4 text-center">Edit Profile</h4>
+<div class="mx-custom-wide">
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+    <%= render "users/shared/error_messages", resource: resource %>
+
+    <div class="form-group">
+      <%= f.label :email %>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", class:'form-control' %>
+    </div>
+    <% if !current_user.hts_dealer? && current_user.role.name != 'admin'%>
+      <div class="form-group">
+        <%= f.label :phone %><i> (eg. 60123456789)</i><br />
+        <%= f.text_field :phone, class: 'form-control' %>
+        <% if resource.errors.messages[:phone][0]%>
+          <p class="text-red">Phone <%= resource.errors.messages[:phone][0] %></p>
+        <%end %>
+      </div>
+    <% end %>
+
+    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+      <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+    <% end %>
+
+    <div class="form-group">
+      <%= f.label :current_password %>
+      <%= f.password_field :current_password, autocomplete: "current-password", class:'form-control', placeholder:'Enter Current Password' %>
+      <small class="text-grey">We need your current password to confirm your changes</small>
+    </div>
+
+    <p id="changePasswordBtn" class="dropdown-toggle link px-0 text-left">Change your password</p>
+    <div id="changePasswordContainer" hidden>
+      <div class="form-group">
+        <%= f.label :password,"New Password" %>
+        <%= f.password_field :password, autocomplete: "new-password", class:'form-control',placeholder:'Enter New Password' %>
+      </div>
+      <div class="form-group">
+        <%= f.label :password_confirmation,"Confirm New Password" %>
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", class:'form-control',placeholder:'Enter New Password' %>
+      </div>
+    </div>
+
+    <div class="actions">
+      <%= f.submit 'Save', class:"btn btn-primary btn-lg btn-block" %>
+    </div>
+  <% end %>
+</div>
+</div>
+<%= javascript_pack_tag 'devise_edit'%>
