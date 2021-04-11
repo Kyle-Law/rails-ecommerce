@@ -6,6 +6,12 @@ class OrdersController < ApplicationController
     @orders = Order.all
   end
 
+  def shipping
+    @order = current_order
+    @order_items = current_order.order_items
+    @order_items.each(&:save)
+  end
+
   # GET /orders/1 or /orders/1.json
   def show
   end
