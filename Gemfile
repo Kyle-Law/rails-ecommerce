@@ -50,3 +50,4 @@ group :development, :test do
 end
 
 gem "pundit", "~> 2.1"
+gem 'faker'
