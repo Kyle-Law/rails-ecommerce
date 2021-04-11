@@ -1,0 +1,12 @@
+console.log('order_item/destroy.js is run')
+document.querySelector("#cart-item").innerHTML = "<%= j(render('carts/carts_item'))%>"
+document.querySelector("#cart").innerHTML = "<%= j(render('carts/cart'))%>"
+
+var orderItemInputs = document.querySelectorAll('#order_item_quantity')
+
+function highlightUpdateBtn(e){
+  e.target.nextElementSibling.classList.add('border-red')
+}
+orderItemInputs.forEach(input => {
+  input.addEventListener('change',highlightUpdateBtn)
+})
