@@ -2,7 +2,10 @@ console.log('order_item/create.js is run')
 
 function afterAdd(){
   document.querySelector("#cart").innerHTML = "<%= j(render('carts/cart'))%>"
-  // document.querySelector('.modal.fade.show').click()
+  document.querySelector("#alerts").innerHTML = "<%= j(render('shared/alerts'))%>"
+  $('[data-toggle="tooltip"]').tooltip();
+  $('.alert').alert();
+  $(".alert").delay(3000).slideUp(300);
 }
 
 afterAdd()

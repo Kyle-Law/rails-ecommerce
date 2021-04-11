@@ -13,6 +13,7 @@ class OrderItemsController < ApplicationController
       @order_item = @order.order_items.new(order_params)
       @order_item.save
     end
+    flash[:notice] = "Item successfully added to cart."
 
     # Save to update total price of the order
     @order.save
@@ -25,6 +26,7 @@ class OrderItemsController < ApplicationController
     @order_items = current_order.order_items
     @order_items.each(&:save)
     current_order.save
+    # flash[:notice] = "#{order_item.name} is updated."
   end
 
   def destroy

@@ -1,7 +1,4 @@
-<% if flash[:remove] %>
-  <p class="alert alert-success text-center"><%= flash[:remove] %></p>
-<% end %>
-<div class="">
+<div class="my-3">
   <div class="row d-md-flex align-items-baseline justify-content-between">
     <h2 class="col-12 col-sm-5 custom-header">My cart</h2>
     <h4 class="col-12 col-sm-6 text-sm-right custom-title">Total (<%= pluralize(current_order.total_quantity, "item")%>): <span class="font-weight-bold"><%= number_to_currency(current_order.total_price || 0,unit:'USD') %></span></h4>
@@ -87,5 +84,3 @@
   </div>
 </div>
 <%= javascript_pack_tag 'cart_show'%>
-
-<%= console%>

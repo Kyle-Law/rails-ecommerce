@@ -56,6 +56,11 @@
 .mx-custom-wide {
   margin: 0;
 }
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
 @media (min-width: 768px) {
   .mx-custom-wide {
     margin: 0 8rem;
