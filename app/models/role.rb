@@ -1,3 +1,3 @@
 class Role < ApplicationRecord
-  has_namy :users
+  has_many :users
 end

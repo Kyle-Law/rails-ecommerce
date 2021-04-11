@@ -1,7 +1,6 @@
 <!-- lib/templates/erb/scaffold/_form.html.erb.tt -->
 
 <%%= form_with(model: <%= model_resource_name %>) do |form| %>
-  <%%= render "error_messages", resource: form.object %>
 
 <% attributes.each do |attribute| -%>
   <div class="form-group">
