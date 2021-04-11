@@ -51,3 +51,4 @@ end
 
 gem "pundit", "~> 2.1"
 gem 'faker'
+gem 'betterlorem'
