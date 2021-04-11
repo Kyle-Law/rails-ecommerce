@@ -4,9 +4,9 @@
 <div class="">
   <div class="row d-md-flex align-items-baseline justify-content-between">
     <h2 class="col-12 col-sm-5 custom-header">My cart</h2>
-    <h4 class="col-12 col-sm-6 text-sm-right custom-title">Total (<%= pluralize(current_order.total_quantity, "tyre")%>)<% if user_signed_in? && current_user.show_price%>: <span class="font-weight-bold"><%= number_to_currency(current_order.price || 0,unit:'RM') %></span><% end %></h4>
+    <h4 class="col-12 col-sm-6 text-sm-right custom-title">Total (<%= pluralize(current_order.total_quantity, "item")%>)<% if user_signed_in? && current_user.show_price%>: <span class="font-weight-bold"><%= number_to_currency(current_order.total_price || 0,unit:'RM') %></span><% end %></h4>
   </div>
-  <% if !current_order.price.nil? && current_order.price.positive? %>
+  <% if !current_order.total_price.nil? && current_order.total_price.positive? %>
     <% if current_order.order_items.size >= 10%>
       <button type="submit" class="btn btn-light my-4" data-toggle="modal" data-target="#exampleModal" id="checkout">Empty Cart</button>
     <% end %>
@@ -14,44 +14,44 @@
       <% @order_items.each do |item| %>
         <div class="mb-2 card ">
           <div class="card-body" style="position:relative;">
-            <span class="mt-1 remove-btn cursor-pointer" data-toggle="modal" data-target="#exampleModalRemove<%=item.tyre.id%>">
+            <span class="mt-1 remove-btn cursor-pointer" data-toggle="modal" data-target="#exampleModalRemove<%=item.item.id%>">
               ⨯
             </span>
             <div class="bg-transparent my-4">
-              <% if brand_image(item.tyre.brand) != ''%>
-                <%=image_tag brand_image(item.tyre.brand),class:"tyre-brand-logo mb-3"%>
-                <h4 class="my-2"><span class="<%= colorize(item.tyre.brand)%>"><%= brandify(item.tyre.brand) %><span></h4>
+              <% if brand_image(item.item.brand) != ''%>
+                <%=image_tag brand_image(item.item.brand),class:"item-brand-logo mb-3"%>
+                <h4 class="my-2"><span class="<%= colorize(item.item.brand)%>"><%= brandify(item.item.brand) %><span></h4>
               <%else%>
-                <h4 class="my-2"><span class="<%= colorize(item.tyre.brand)%>"><%= brandify(item.tyre.brand) %><span></h4>
+                <h4 class="my-2"><span class="<%= colorize(item.item.brand)%>"><%= brandify(item.item.brand) %><span></h4>
               <%end%>
-              <h5 class="text-secondary"><%= item.tyre.patternify %> <%= item.tyre.sizify %> <%= item.tyre.countrify %></h5>
+              <h5 class="text-secondary"><%= item.item.patternify %> <%= item.item.sizify %> <%= item.item.countrify %></h5>
             </div>
             <% if user_signed_in? && current_user.show_price%>
-              <% if item.tyre.under_promotion?%>
+              <% if item.item.under_promotion?%>
                 <%if item.promo_applying%>
-                  <h6 class=""><span class="mr-1 font-weight-bold"><%= number_to_currency(item.promo_applying.discount ? item.tyre.price - item.promo_applying.discount : item.tyre.price,unit:'RM') %></span>
+                  <h6 class=""><span class="mr-1 font-weight-bold"><%= number_to_currency(item.promo_applying.discount ? item.item.price - item.promo_applying.discount : item.item.price,unit:'RM') %></span>
                     <%if item.promo_applying.discount || item.promo_applying.percent%>
-                      <span class="text-secondary" style="text-decoration:line-through;"><%= number_to_currency(item.tyre.price,unit:'RM') %></span>
+                      <span class="text-secondary" style="text-decoration:line-through;"><%= number_to_currency(item.item.price,unit:'RM') %></span>
                     <%end%>
-                    per tyre
+                    per item
                   </h6>
                 <%else%>
-                  <h6 class=""><%= number_to_currency(item.tyre.price,unit:'RM') %> per tyre</h6>
+                  <h6 class=""><%= number_to_currency(item.item.price,unit:'RM') %> per item</h6>
                 <%end%>
               <%else %>
-                <h6 class=""><%= number_to_currency(item.tyre.price,unit:'RM') %> per tyre</h6>
+                <h6 class=""><%= number_to_currency(item.item.price,unit:'RM') %> per item</h6>
               <%end%>
             <% end %>
             <div class="">
               <%= form_for item, remote: true do |f| %>
                 <div class="">
                   <div class="mb-2 d-flex flex-wrap">
-                    <%= f.hidden_field :tyre_id, :value => item.tyre.id %>
-                    <% f.number_field :quantity, :value => item.quantity.to_i,class:'border mr-2 text-dark',min:1,max:item.tyre.quantity %>
-                    <%= f.select :quantity, [*1..max_quantity(item.tyre.quantity)],{},class:'border mr-2 text-dark px-2' %>
+                    <%= f.hidden_field :item_id, :value => item.item.id %>
+                    <% f.number_field :quantity, :value => item.quantity.to_i,class:'border mr-2 text-dark',min:1,max:item.item.quantity %>
+                    <%= f.select :quantity, [*1..max_quantity(item.item.quantity)],{},class:'border mr-2 text-dark px-2' %>
                     <%= button_tag "Update", class:'btn btn-light bg-transparent',data: { disable_with: "Updating..." }%>
                   </div>
-                  <% if item.tyre.under_promotion? && item.promo_prompting%>
+                  <% if item.item.under_promotion? && item.promo_prompting%>
                     <p class="text-secondary" >Order <span class="text-red"><%=x_item_more(item,current_order.promotion_book)%> more</span> to enjoy <%= item.promo_prompting.prompt_prize %></p>
                   <%else%>
                     <p  class="my-3"></p>
@@ -61,9 +61,9 @@
             </div>
             <div class="mt-4">
               <% if user_signed_in? && current_user.show_price%>
-                <% if item.tyre.under_promotion? && item.promo_applying && item.tyre.discount?%>
+                <% if item.item.under_promotion? && item.promo_applying && item.item.discount?%>
                   <h6 class="cart-item-subtotal ">Subtotal: <span class=""><%= number_to_currency(item.sub_total.to_f,unit:'RM') %></span> <span class="text-secondary" style="text-decoration:line-through;"><%= number_to_currency(item.quantity.to_f * item.unit_price.to_f,unit:'RM') %></span></h6>
-                <%elsif item.tyre.under_promotion? && item.promo_applying%>
+                <%elsif item.item.under_promotion? && item.promo_applying%>
                   <h6 class="cart-item-subtotal ">Subtotal: <span class=""><%= number_to_currency(item.sub_total.to_f,unit:'RM') %></span></h6>
                 <%else%>
                   <h6 class="cart-item-subtotal ">Subtotal: <%= number_to_currency(item.sub_total.to_f,unit:'RM') %></h6>
@@ -77,15 +77,10 @@
                 <% end %>
               <%end%>
             </div>
-            <!--
-            <%if item.tyre.under_promotion? && item.promo_applying%>
-              <h6 class="">'<%=link_to item.promo_applying.prompt_prize, item.promo_applying,target:'blank'%>' is applied</h6>
-            <%end%>
-            -->
           </div>
         </div>
         <!-- Modal -->
-        <div class="modal fade" id="exampleModalRemove<%=item.tyre.id%>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="exampleModalRemove<%=item.item.id%>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
@@ -95,8 +90,8 @@
                 </button>
               </div>
               <div class="modal-body">
-                <%= image_tag brand_image(item.tyre.brand), class: "add-to-cart-tyre-brand-logo" %>
-                <div class="mt-3 mb-4">Remove <span class="" style="line-height: 2"><%= item.tyre.summarify%></span> from your cart?</div>
+                <%= image_tag brand_image(item.item.brand), class: "add-to-cart-item-brand-logo" %>
+                <div class="mt-3 mb-4">Remove <span class="" style="line-height: 2"><%= item.item.summarify%></span> from your cart?</div>
               </div>
               <div class="modal-footer">
                 <%= link_to "Yes, remove item", order_item_path(item), method: :delete, remote: true, class:'btn btn-primary',data: { turbolinks:true,disable_with: "Removing...",dismiss:"modal" }, title:'Remove item'%>
@@ -106,13 +101,13 @@
         </div>
       <% end %>
     </div>
-    <% unless current_order.price.nil? || !current_order.price.positive? %>
+    <% unless current_order.total_price.nil? || !current_order.total_price.positive? %>
       <%= link_to 'Proceed to shipping', shipping_orders_path ,class:"btn btn-primary btn-lg btn-block mt-4" %>
     <% end %>
   <% else %>
     <h4 class="text-center mt-4 border p-5">No items in your cart</h4>
   <% end %>
-  <div class="text-center my-4"><%= link_to '< Browse more tyres', root_path, class:'link' %></div>
+  <div class="text-center my-4"><%= link_to '< Browse more items', root_path, class:'link' %></div>
 </div>
 <!-- Empty Cart Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
