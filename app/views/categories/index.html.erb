@@ -1,0 +1,46 @@
+<!-- lib/templates/erb/scaffold/index.html.erb.tt -->
+
+<div class="container mx-auto my-8 px-4">
+  <div class="flex justify-between items-center mb-4">
+    <h1 class="h2">Categories</h1>
+
+    <% if @categories.exists? %>
+      <%= link_to 'New Category', new_category_path, class: "btn btn-primary" %>
+    <% end %>
+  </div>
+
+  <% if @categories.exists? %>
+    <div class="bg-white rounded shadow">
+      <table class="w-full">
+        <thead>
+          <tr>
+            <th class="p-3 uppercase text-left text-xs text-gray-700">Name</th>
+
+            <th class="p-3 uppercase text-left text-xs text-gray-700">Actions</th>
+          </tr>
+        </thead>
+
+        <tbody>
+        <% @categories.each do |category| %>
+          <tr class="group border-t border-gray-400 hover:bg-gray-100">
+                          <td class="p-3"><%= category.name %></td>
+            
+            <td>
+              <%= link_to "View", category, class: "btn btn-primary" %>
+              <%= link_to "Edit", edit_category_path(category), class: "btn btn-primary" %>
+            </td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+
+  <% else %>
+    <div class="bg-white rounded shadow flex items-center justify-between p-8">
+      <div class="flex-1 text-center">
+        <p class="text-xl font-semibold mb-4">Create your first Category</p>
+      <%= link_to 'New Category', new_category_path, class: "btn btn-primary" %>
+      </div>
+    </div>
+  <% end %>
+</div>

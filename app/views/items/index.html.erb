@@ -1,0 +1,58 @@
+<!-- lib/templates/erb/scaffold/index.html.erb.tt -->
+
+<div class="container mx-auto my-8 px-4">
+  <div class="flex justify-between items-center mb-4">
+    <h1 class="h2">Items</h1>
+
+    <% if @items.exists? %>
+      <%= link_to 'New Item', new_item_path, class: "btn btn-primary" %>
+    <% end %>
+  </div>
+
+  <% if @items.exists? %>
+    <div class="bg-white rounded shadow">
+      <table class="w-full">
+        <thead>
+          <tr>
+            <th class="p-3 uppercase text-left text-xs text-gray-700">Name</th>
+            <th class="p-3 uppercase text-left text-xs text-gray-700">Price</th>
+            <th class="p-3 uppercase text-left text-xs text-gray-700">Quantity</th>
+            <th class="p-3 uppercase text-left text-xs text-gray-700">Description</th>
+            <th class="p-3 uppercase text-left text-xs text-gray-700">Photo url</th>
+            <th class="p-3 uppercase text-left text-xs text-gray-700">Brand</th>
+            <th class="p-3 uppercase text-left text-xs text-gray-700">Category</th>
+
+            <th class="p-3 uppercase text-left text-xs text-gray-700">Actions</th>
+          </tr>
+        </thead>
+
+        <tbody>
+        <% @items.each do |item| %>
+          <tr class="group border-t border-gray-400 hover:bg-gray-100">
+                          <td class="p-3"><%= item.name %></td>
+                          <td class="p-3"><%= item.price %></td>
+                          <td class="p-3"><%= item.quantity %></td>
+                          <td class="p-3"><%= item.description %></td>
+                          <td class="p-3"><%= item.photo_url %></td>
+                          <td class="p-3"><%= item.brand_id %></td>
+                          <td class="p-3"><%= item.category_id %></td>
+            
+            <td>
+              <%= link_to "View", item, class: "btn btn-primary" %>
+              <%= link_to "Edit", edit_item_path(item), class: "btn btn-primary" %>
+            </td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+
+  <% else %>
+    <div class="bg-white rounded shadow flex items-center justify-between p-8">
+      <div class="flex-1 text-center">
+        <p class="text-xl font-semibold mb-4">Create your first Item</p>
+      <%= link_to 'New Item', new_item_path, class: "btn btn-primary" %>
+      </div>
+    </div>
+  <% end %>
+</div>

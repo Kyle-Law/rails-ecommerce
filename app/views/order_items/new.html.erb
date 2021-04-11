@@ -1,0 +1,11 @@
+<!-- lib/templates/erb/scaffold/new.html.erb.tt -->
+
+<div class="container mx-auto my-8 px-4">
+  <div class="max-w-xl mx-auto">
+    <h1 class="text-2xl font-bold mb-6">New Order Item</h1>
+
+    <%= render 'form', order_item: @order_item %>
+
+    <%= link_to 'Back', order_items_path, class: "link" %>
+  </div>
+</div>

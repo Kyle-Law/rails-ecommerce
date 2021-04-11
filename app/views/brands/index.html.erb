@@ -1,0 +1,46 @@
+<!-- lib/templates/erb/scaffold/index.html.erb.tt -->
+
+<div class="container mx-auto my-8 px-4">
+  <div class="flex justify-between items-center mb-4">
+    <h1 class="h2">Brands</h1>
+
+    <% if @brands.exists? %>
+      <%= link_to 'New Brand', new_brand_path, class: "btn btn-primary" %>
+    <% end %>
+  </div>
+
+  <% if @brands.exists? %>
+    <div class="bg-white rounded shadow">
+      <table class="w-full">
+        <thead>
+          <tr>
+            <th class="p-3 uppercase text-left text-xs text-gray-700">Name</th>
+
+            <th class="p-3 uppercase text-left text-xs text-gray-700">Actions</th>
+          </tr>
+        </thead>
+
+        <tbody>
+        <% @brands.each do |brand| %>
+          <tr class="group border-t border-gray-400 hover:bg-gray-100">
+                          <td class="p-3"><%= brand.name %></td>
+            
+            <td>
+              <%= link_to "View", brand, class: "btn btn-primary" %>
+              <%= link_to "Edit", edit_brand_path(brand), class: "btn btn-primary" %>
+            </td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+
+  <% else %>
+    <div class="bg-white rounded shadow flex items-center justify-between p-8">
+      <div class="flex-1 text-center">
+        <p class="text-xl font-semibold mb-4">Create your first Brand</p>
+      <%= link_to 'New Brand', new_brand_path, class: "btn btn-primary" %>
+      </div>
+    </div>
+  <% end %>
+</div>

@@ -1,0 +1,29 @@
+<!-- lib/templates/erb/scaffold/show.html.erb.tt -->
+
+<div class="container mx-auto my-8 px-4">
+    <p class="text-lg font-semibold">Name:</p>
+  <p class="leading-normal"><%= @item.name %></p>
+
+    <p class="text-lg font-semibold">Price:</p>
+  <p class="leading-normal"><%= @item.price %></p>
+
+    <p class="text-lg font-semibold">Quantity:</p>
+  <p class="leading-normal"><%= @item.quantity %></p>
+
+    <p class="text-lg font-semibold">Description:</p>
+  <p class="leading-normal"><%= @item.description %></p>
+
+    <p class="text-lg font-semibold">Photo url:</p>
+  <p class="leading-normal"><%= @item.photo_url %></p>
+
+    <p class="text-lg font-semibold">Brand:</p>
+  <p class="leading-normal"><%= @item.brand %></p>
+
+    <p class="text-lg font-semibold">Category:</p>
+  <p class="leading-normal"><%= @item.category %></p>
+
+    <div class="flex items-center justify-start mt-6">
+    <%= link_to 'Edit', edit_item_path(@item), class: "btn btn-primary mr-4" %>
+    <%= link_to 'Back', items_path, class: "btn btn-primary" %>
+  </div>
+</div>

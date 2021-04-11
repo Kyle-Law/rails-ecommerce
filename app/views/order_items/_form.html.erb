@@ -1,0 +1,55 @@
+<!-- lib/templates/erb/scaffold/_form.html.erb.tt -->
+
+<%= form_with(model: order_item) do |form| %>
+  <%= render "error_messages", resource: form.object %>
+
+  <div class="form-group">
+
+    <%= form.label :item_id, class: "label" %>
+    <%= form.text_field :item_id, class: "form-control" %>
+
+  </div>
+
+  <div class="form-group">
+
+    <%= form.label :order_id, class: "label" %>
+    <%= form.text_field :order_id, class: "form-control" %>
+
+  </div>
+
+  <div class="form-group">
+
+    <%= form.label :quantity, class: "label" %>
+    <%= form.number_field :quantity, class: "form-control" %>
+
+  </div>
+
+  <div class="form-group">
+
+    <%= form.label :unit_price, class: "label" %>
+    <%= form.text_field :unit_price, class: "form-control" %>
+
+  </div>
+
+  <div class="form-group">
+
+    <%= form.label :unit_discount, class: "label" %>
+    <%= form.text_field :unit_discount, class: "form-control" %>
+
+  </div>
+
+  <div class="form-group">
+
+    <%= form.label :sub_total, class: "label" %>
+    <%= form.text_field :sub_total, class: "form-control" %>
+
+  </div>
+
+  <div class="form-group">
+    <%= form.button class: "btn btn-primary" %>
+
+    <% if form.object.persisted? %>
+      <%= link_to 'Delete', form.object, class: "btn btn-primary", method: :delete, data: { remote: true, confirm: "Are you sure?" } %>
+    <% end %>
+  </div>
+<% end %>

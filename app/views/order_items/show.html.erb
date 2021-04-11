@@ -1,0 +1,26 @@
+<!-- lib/templates/erb/scaffold/show.html.erb.tt -->
+
+<div class="container mx-auto my-8 px-4">
+    <p class="text-lg font-semibold">Item:</p>
+  <p class="leading-normal"><%= @order_item.item %></p>
+
+    <p class="text-lg font-semibold">Order:</p>
+  <p class="leading-normal"><%= @order_item.order %></p>
+
+    <p class="text-lg font-semibold">Quantity:</p>
+  <p class="leading-normal"><%= @order_item.quantity %></p>
+
+    <p class="text-lg font-semibold">Unit price:</p>
+  <p class="leading-normal"><%= @order_item.unit_price %></p>
+
+    <p class="text-lg font-semibold">Unit discount:</p>
+  <p class="leading-normal"><%= @order_item.unit_discount %></p>
+
+    <p class="text-lg font-semibold">Sub total:</p>
+  <p class="leading-normal"><%= @order_item.sub_total %></p>
+
+    <div class="flex items-center justify-start mt-6">
+    <%= link_to 'Edit', edit_order_item_path(@order_item), class: "btn btn-primary mr-4" %>
+    <%= link_to 'Back', order_items_path, class: "btn btn-primary" %>
+  </div>
+</div>

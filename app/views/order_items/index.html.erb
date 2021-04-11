@@ -1,0 +1,56 @@
+<!-- lib/templates/erb/scaffold/index.html.erb.tt -->
+
+<div class="container mx-auto my-8 px-4">
+  <div class="flex justify-between items-center mb-4">
+    <h1 class="h2">Order Items</h1>
+
+    <% if @order_items.exists? %>
+      <%= link_to 'New Order Item', new_order_item_path, class: "btn btn-primary" %>
+    <% end %>
+  </div>
+
+  <% if @order_items.exists? %>
+    <div class="bg-white rounded shadow">
+      <table class="w-full">
+        <thead>
+          <tr>
+            <th class="p-3 uppercase text-left text-xs text-gray-700">Item</th>
+            <th class="p-3 uppercase text-left text-xs text-gray-700">Order</th>
+            <th class="p-3 uppercase text-left text-xs text-gray-700">Quantity</th>
+            <th class="p-3 uppercase text-left text-xs text-gray-700">Unit price</th>
+            <th class="p-3 uppercase text-left text-xs text-gray-700">Unit discount</th>
+            <th class="p-3 uppercase text-left text-xs text-gray-700">Sub total</th>
+
+            <th class="p-3 uppercase text-left text-xs text-gray-700">Actions</th>
+          </tr>
+        </thead>
+
+        <tbody>
+        <% @order_items.each do |order_item| %>
+          <tr class="group border-t border-gray-400 hover:bg-gray-100">
+                          <td class="p-3"><%= order_item.item_id %></td>
+                          <td class="p-3"><%= order_item.order_id %></td>
+                          <td class="p-3"><%= order_item.quantity %></td>
+                          <td class="p-3"><%= order_item.unit_price %></td>
+                          <td class="p-3"><%= order_item.unit_discount %></td>
+                          <td class="p-3"><%= order_item.sub_total %></td>
+            
+            <td>
+              <%= link_to "View", order_item, class: "btn btn-primary" %>
+              <%= link_to "Edit", edit_order_item_path(order_item), class: "btn btn-primary" %>
+            </td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+
+  <% else %>
+    <div class="bg-white rounded shadow flex items-center justify-between p-8">
+      <div class="flex-1 text-center">
+        <p class="text-xl font-semibold mb-4">Create your first Order Item</p>
+      <%= link_to 'New Order Item', new_order_item_path, class: "btn btn-primary" %>
+      </div>
+    </div>
+  <% end %>
+</div>

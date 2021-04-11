@@ -1,0 +1,35 @@
+<!-- lib/templates/erb/scaffold/show.html.erb.tt -->
+
+<div class="container mx-auto my-8 px-4">
+    <p class="text-lg font-semibold">User:</p>
+  <p class="leading-normal"><%= @order.user %></p>
+
+    <p class="text-lg font-semibold">Total price:</p>
+  <p class="leading-normal"><%= @order.total_price %></p>
+
+    <p class="text-lg font-semibold">Status:</p>
+  <p class="leading-normal"><%= @order.status %></p>
+
+    <p class="text-lg font-semibold">Credit:</p>
+  <p class="leading-normal"><%= @order.credit %></p>
+
+    <p class="text-lg font-semibold">Remarks:</p>
+  <p class="leading-normal"><%= @order.remarks %></p>
+
+    <p class="text-lg font-semibold">Shipping address:</p>
+  <p class="leading-normal"><%= @order.shipping_address %></p>
+
+    <p class="text-lg font-semibold">Notification phone number:</p>
+  <p class="leading-normal"><%= @order.notification_phone_number %></p>
+
+    <p class="text-lg font-semibold">Voucher code:</p>
+  <p class="leading-normal"><%= @order.voucher_code %></p>
+
+    <p class="text-lg font-semibold">Delivery mode:</p>
+  <p class="leading-normal"><%= @order.delivery_mode %></p>
+
+    <div class="flex items-center justify-start mt-6">
+    <%= link_to 'Edit', edit_order_path(@order), class: "btn btn-primary mr-4" %>
+    <%= link_to 'Back', orders_path, class: "btn btn-primary" %>
+  </div>
+</div>
