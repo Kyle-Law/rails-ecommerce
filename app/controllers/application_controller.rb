@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
   include ApplicationHelper
   include Pundit
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
+  before_action :authenticate_user!
 
   def user_not_authorized
     flash[:alert] = "You are not authorized to perform this action. Please contact us at htthsupport@htgroup.com.my if you need any assistance."
