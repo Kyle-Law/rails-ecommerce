@@ -31,3 +31,10 @@ rails g erb:scaffold promotion name message min:integer mixable:boolean discount
 rails g erb:scaffold item name price:decimal quantity:integer description:text photo_url brand:references category:references
 rails g erb:scaffold order user:references total_price:decimal status credit:decimal remarks:text shipping_address:text notification_phone_number voucher_code delivery_mode:references
 rails g erb:scaffold order_item item:references order:references quantity:integer unit_price:decimal unit_discount:decimal sub_total:decimal
+
+# Add item attributes to promotion
+# Manually add `array: true, default: []` in the migration file
+rails g migration AddAttributesToPromotions item_categories item_brands item_keyword
+
+# Additional migrations
+rails g migration AddIsPromoToItems is_promo:boolean
