@@ -52,3 +52,23 @@
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   grid-gap: 15px;
 }
+
+.mx-custom-wide {
+  margin: 0;
+}
+@media (min-width: 768px) {
+  .mx-custom-wide {
+    margin: 0 8rem;
+  }
+}
+@media (min-width: 992px) {
+  .mx-custom-wide {
+    margin: 0 15rem;
+  }
+}
+
+@media (min-width: 1206px) {
+  .mx-custom-wide {
+    margin: 0 20rem;
+  }
+}

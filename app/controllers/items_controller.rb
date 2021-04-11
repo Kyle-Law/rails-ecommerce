@@ -1,8 +1,12 @@
 class ItemsController < ApplicationController
   before_action :set_item, only: %i[ show edit update destroy ]
+  before_action :authenticate_user!, except: %i[index]
 
   # GET /items or /items.json
   def index
+    # To avoid initial alert from devise
+    redirect_to new_user_session_path and return unless user_signed_in?
+
     @items = Item.all
     @order_item = current_order.order_items.new
   end
