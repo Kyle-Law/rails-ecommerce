@@ -1,0 +1,30 @@
+
+  <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light">
+    <%= link_to 'Rails Ecommerce', root_path, class:"navbar-brand" %>
+    <button class="navbar-toggler dropdown-toggle-split" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="ml-auto navbar-nav align-items-center">
+        <% if user_signed_in? %>
+          <li class="nav-item ml-auto">
+            <%= link_to carts_path, :class => "d-inline-block nav-link" do %>
+              <span class="pr-0">My Cart</span>
+              <%= render 'carts/cart'%>
+            <% end %>
+          </li>
+          <li class="nav-item ml-auto">
+            <%= link_to 'My Orders', orders_path, class:'nav-link'  %>
+          </li>
+          <li class="nav-item ml-auto">
+            <%= link_to current_user.email, edit_user_registration_path, class:'nav-link' %>
+          </li>
+          <li class="nav-item ml-auto"><%= link_to 'Logout', destroy_user_session_path, method: :delete, class:'nav-link' %></li>
+        <% else %>
+          <li class="nav-item ml-auto">
+            <%= link_to 'Login', new_user_session_path, class:'nav-link' %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </nav>
