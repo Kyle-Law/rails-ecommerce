@@ -8,7 +8,19 @@
         <p class="p-0 m-0">Brand: <%=item.brand.name%></p>
         <p class="p-0 m-0">Category: <small class="text-secondary"><%=item.category.name%></small></p>
         <p class="p-0 m-0">Description: <small class="text-secondary"><%=truncate(item.description,length:100)%></small></p>
-        <p class="p-0 m-0">Price: <%=number_to_currency(item.price,unit:'USD')%></p>
+        <% if item.under_promotion?%>
+          <div>
+            <span class="font-weight-bold mr-1"><%=number_to_currency(item.price_after_biggest_discount,unit:'RM')%></span>
+            <%if item.discount? || item.percent?%>
+              <span class="text-secondary" style="text-decoration:line-through;"><%= number_to_currency(item.price,unit:'RM') %></span>
+            <%end%>
+            <span> per item</span>
+          </div>
+        <%else %>
+          <div>
+            <span class="font-weight-bold"><%= number_to_currency(item.price,unit:'RM') %></span>
+            <span> per item</span></div>
+        <%end%>
         <p class="p-0 m-0">Availability: <%="#{item.quantity} in stock"%></p>
         <%= form_for @order_item, remote: true,html:{class:' add-to-cart-form'}  do |f|%>
           <%= f.hidden_field :item_id, :value => item.id %>

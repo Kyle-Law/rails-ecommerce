@@ -8,6 +8,17 @@ class Order < ApplicationRecord
     order_items.map(&:quantity).sum
   end
 
+  def promotion_book
+    book = {}
+    order_items.each do |oi|
+      oi.item.current_all_promotions.each do |p|
+        book[p] ||= Hash.new(0)
+        p.mixable ? book[p]['mix'] += oi.quantity : book[p][oi] += oi.quantity
+      end
+    end
+    book
+  end
+
   private
 
   def set_attributes
