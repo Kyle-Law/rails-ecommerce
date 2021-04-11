@@ -3,3 +3,52 @@
   grid-template-columns: 80px max-content;
   grid-gap: 10px;
 }
+
+// Order#checkout
+.order-checkout label {
+  font-size: 1.2rem;
+}
+
+// Order#Index
+.order-item-card {
+  display: grid;
+  grid-gap: 8px;
+}
+
+.remove-btn {
+  font-size: 2.5rem;
+  position: absolute;
+  top: -12px;
+  right: 15px;
+  color: #b3b3b3;
+}
+
+#cart h6 {
+  margin-right: 20px;
+  position: relative;
+}
+
+#cart span {
+  background-color: #007bff;
+  color: white;
+  border-radius: 99999px;
+  padding: 3px;
+  position: absolute;
+  right: -15px;
+  bottom: -10px;
+  font-size: 0.8rem;
+  min-height: 20px;
+  min-width: 20px;
+  text-align: center;
+}
+
+.border-red {
+  border: 1px solid red;
+  color: red;
+}
+
+.orderitems-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-gap: 15px;
+}

@@ -3,10 +3,6 @@ console.log('order_item/create.js is run')
 function afterAdd(){
   document.querySelector("#cart").innerHTML = "<%= j(render('carts/cart'))%>"
   // document.querySelector('.modal.fade.show').click()
-  document.querySelector('.modal.fade.show #afterAddBody').hidden = false
-  document.querySelector('.modal.fade.show #beforeAddBody').hidden = true
-  document.querySelector('.modal.fade.show .afterAddHeader').hidden = false
-  document.querySelector('.modal.fade.show .beforeAddHeader').hidden = true
 }
 
 afterAdd()
