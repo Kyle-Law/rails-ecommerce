@@ -37,7 +37,7 @@
       <%= f.label :remarks,'Comments'%>
       <%= f.text_area :remarks, placeholder:'Additional information you would like us to know',class:'form-control' %>
     </div>
-    <button type="submit" class="btn btn-primary btn-lg btn-block mt-4" data-toggle="modal" data-target="#exampleModal" disabled id="checkout">Review order</button>
+    <button type="submit" class="btn btn-primary btn-lg btn-block mt-4" data-toggle="modal" data-target="#exampleModal" id="checkout">Review order</button>
     <p class="text-center text-red" id="checkoutPrompt">(Please select delivery mode, shipping address, and contact number before proceeding)</p>
   <% end %>
   <h6 class="text-center my-4"><%= link_to '< Back to cart', carts_path, :class => "link" %></h6>

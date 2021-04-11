@@ -1,7 +1,28 @@
 <!-- lib/templates/erb/scaffold/index.html.erb.tt -->
-
+<% if @items.exists? %>
 <div class=" mx-auto my-8 px-4">
-
+  <div class="items-container">
+    <% @items.each do |item| %>
+      <div class="item-card card">
+        <p class="p-0 m-0">Item: <%=item.name%></p>
+        <p class="p-0 m-0">Brand: <%=item.brand.name%></p>
+        <p class="p-0 m-0">Category: <small class="text-secondary"><%=item.category.name%></small></p>
+        <p class="p-0 m-0">Description: <small class="text-secondary"><%=truncate(item.description,length:100)%></small></p>
+        <p class="p-0 m-0">Price: <%=number_to_currency(item.price,unit:'USD')%></p>
+        <p class="p-0 m-0">Availability: <%="#{item.quantity} in stock"%></p>
+        <%= form_for @order_item, remote: true,html:{class:' add-to-cart-form'}  do |f|%>
+          <%= f.hidden_field :item_id, :value => item.id %>
+          <%= f.select :quantity, [*1..max_quantity(item.quantity)],{}, class:'form-control' %>
+          <%= button_tag type: 'submit', class: "checkout-btn btn btn-primary", data: { disable_with: "Updating..." } do %>
+            Add to cart
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>
+<% end %>
+<!--
   <% if @items.exists? %>
     <div class="bg-white rounded">
       <table class="table-responsive">
@@ -51,4 +72,4 @@
       </div>
     </div>
   <% end %>
-</div>
+-->
