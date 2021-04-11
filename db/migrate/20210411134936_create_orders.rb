@@ -9,7 +9,7 @@ class CreateOrders < ActiveRecord::Migration[6.0]
       t.text :shipping_address
       t.string :notification_phone_number
       t.string :voucher_code
-      t.references :delivery_mode, null: false, foreign_key: true
+      t.references :delivery_mode, null: true, foreign_key: true
 
       t.timestamps
     end
