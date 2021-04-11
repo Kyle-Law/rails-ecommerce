@@ -1,16 +1,9 @@
 <!-- lib/templates/erb/scaffold/index.html.erb.tt -->
 
-<div class="container mx-auto my-8 px-4">
-  <div class="flex justify-between items-center mb-4">
-    <h1 class="h2">Items</h1>
-
-    <% if @items.exists? %>
-      <%= link_to 'New Item', new_item_path, class: "btn btn-primary" %>
-    <% end %>
-  </div>
+<div class=" mx-auto my-8 px-4">
 
   <% if @items.exists? %>
-    <div class="bg-white rounded shadow">
+    <div class="bg-white rounded">
       <table class="table-responsive">
         <thead>
           <tr>
