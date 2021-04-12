@@ -1,6 +1,6 @@
 <!-- lib/templates/erb/scaffold/index.html.erb.tt -->
 
-<div class="container mx-auto my-8 px-4">
+<div class=" my-8 px-4">
   <div class="flex justify-between items-center mb-4">
     <h1 class="h2">Promotions</h1>
 
@@ -16,6 +16,7 @@
           <tr>
             <th class="p-3 uppercase text-left text-xs text-gray-700">Name</th>
             <th class="p-3 uppercase text-left text-xs text-gray-700">Message</th>
+            <th class="p-3 uppercase text-left text-xs text-gray-700">Description</th>
             <th class="p-3 uppercase text-left text-xs text-gray-700">Min</th>
             <th class="p-3 uppercase text-left text-xs text-gray-700">Mixable</th>
             <th class="p-3 uppercase text-left text-xs text-gray-700">Discount fixed</th>
@@ -33,20 +34,21 @@
         <tbody>
         <% @promotions.each do |promotion| %>
           <tr class="group border-t border-gray-400 hover:bg-gray-100">
-                          <td class="p-3"><%= promotion.name %></td>
-                          <td class="p-3"><%= promotion.message %></td>
-                          <td class="p-3"><%= promotion.min %></td>
-                          <td class="p-3"><%= promotion.mixable %></td>
-                          <td class="p-3"><%= promotion.discount_fixed %></td>
-                          <td class="p-3"><%= promotion.discount_percent %></td>
-                          <td class="p-3"><%= promotion.gift %></td>
-                          <td class="p-3"><%= promotion.gift_quantity %></td>
-                          <td class="p-3"><%= promotion.date_start %></td>
-                          <td class="p-3"><%= promotion.date_end %></td>
-                          <td class="p-3"><%= promotion.voucher_code %></td>
-            
-            <td>
-              <%= link_to "View", promotion, class: "btn btn-primary" %>
+            <td class="p-3"><%= promotion.name %></td>
+            <td class="p-3"><%= promotion.message %></td>
+            <td class="p-3"><%= promotion.description %></td>
+            <td class="p-3"><%= promotion.min %></td>
+            <td class="p-3"><%= promotion.mixable %></td>
+            <td class="p-3"><%= promotion.discount_fixed %></td>
+            <td class="p-3"><%= promotion.discount_percent %></td>
+            <td class="p-3"><%= promotion.gift %></td>
+            <td class="p-3"><%= promotion.gift_quantity %></td>
+            <td class="p-3"><%= promotion.date_start %></td>
+            <td class="p-3"><%= promotion.date_end %></td>
+            <td class="p-3"><%= promotion.voucher_code %></td>
+
+            <td class="d-flex align-items-center">
+              <%= link_to "View", promotion, class: "btn btn-primary mr-3" %>
               <%= link_to "Edit", edit_promotion_path(promotion), class: "btn btn-primary" %>
             </td>
           </tr>
