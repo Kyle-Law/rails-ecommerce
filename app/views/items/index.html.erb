@@ -2,6 +2,7 @@
 <% if @items.exists? %>
 <div class=" mx-auto my-5 px-4">
   <%= render 'filters_form' %>
+  <p>Showing <%=@items.count%> items</p>
   <div class="items-container">
     <% @items.each do |item| %>
       <div class="item-card card">
@@ -38,55 +39,13 @@
     <% end %>
   </div>
 </div>
+<% else%>
+  <div class="my-4">
+  <p>Sorry, there are no items found for the search ente red. Please try another search or:</p>
+  <ul>
+    <li>Keep your search criteria simple for a wider search result</li>
+    <li>Show <%= link_to 'all items', root_path, class:'link',data: { disable_with: "Redirecting..." }%> <span>instead</span></li>
+  </ul>
+  <p>Need assistance? Contact us on <%=mail_to 'kylelaw1121@gmail.com','kylelaw1121@gmail.com', class:'link'%></p>
+</div>
 <% end %>
-<!--
-  <% if @items.exists? %>
-    <div class="bg-white rounded">
-      <table class="table-responsive">
-        <thead>
-          <tr>
-            <th class="p-3 uppercase text-left text-xs text-gray-700">Name</th>
-            <th class="p-3 uppercase text-left text-xs text-gray-700">Price</th>
-            <th class="p-3 uppercase text-left text-xs text-gray-700">Quantity</th>
-            <th class="p-3 uppercase text-left text-xs text-gray-700">Description</th>
-            <th class="p-3 uppercase text-left text-xs text-gray-700">Brand</th>
-            <th class="p-3 uppercase text-left text-xs text-gray-700">Category</th>
-
-            <th class="p-3 uppercase text-left text-xs text-gray-700 ">Actions</th>
-          </tr>
-        </thead>
-
-        <tbody>
-        <% @items.each do |item| %>
-          <tr class="group border-t border-gray-400 hover:bg-gray-100">
-            <td class="p-3"><%= item.name %></td>
-            <td class="p-3"><%= number_to_currency(item.price, unit:'USD') %></td>
-            <td class="p-3"><%= item.quantity %></td>
-            <td class="p-3"><%= item.description %></td>
-            <td class="p-3"><%= item.brand.name %></td>
-            <td class="p-3"><%= item.category.name %></td>
-
-            <td class="">
-              <%= form_for @order_item, remote: true,html:{class:' add-to-cart-form'}  do |f|%>
-                <%= f.hidden_field :item_id, :value => item.id %>
-                <%= f.select :quantity, [*1..max_quantity(item.quantity)],{}, class:'form-control' %>
-                <%= button_tag type: 'submit', class: "checkout-btn btn btn-primary", data: { disable_with: "Updating..." } do %>
-                  Add to cart
-                <% end %>
-              <% end %>
-            </td>
-          </tr>
-        <% end %>
-        </tbody>
-      </table>
-    </div>
-
-  <% else %>
-    <div class="bg-white rounded shadow flex items-center justify-between p-8">
-      <div class="flex-1 text-center">
-        <p class="text-xl font-semibold mb-4">Create your first Item</p>
-      <%= link_to 'New Item', new_item_path, class: "btn btn-primary" %>
-      </div>
-    </div>
-  <% end %>
--->

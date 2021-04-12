@@ -13,8 +13,10 @@ class ItemsController < ApplicationController
     @categories = Item.all.map{|i| i.category.name}.uniq.sort
     brand_selected = params[:itemBrand].present? ? params[:itemBrand] : @brands
     category_selected = params[:itemCategory].present? ? params[:itemCategory] : @categories
-    promo_only = params[:promo_only].present? ? params[:promo_only]=='on' : false
-    @items = Item.by_brand(brand_selected).by_category(category_selected).by_promo(promo_only)
+    promo_only = params[:promo_only].present?
+    items_screened = Item.by_brand(brand_selected).by_category(category_selected)
+    items_screened = items_screened.by_promo(true) if promo_only
+    @items = items_screened
   end
 
   # GET /items/1 or /items/1.json
