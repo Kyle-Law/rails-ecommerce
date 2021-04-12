@@ -7,8 +7,14 @@ class ItemsController < ApplicationController
     # To avoid initial alert from devise
     redirect_to new_user_session_path and return unless user_signed_in?
 
-    @items = Item.all
+
     @order_item = current_order.order_items.new
+    @brands = Item.all.map{|i| i.brand.name}.uniq.sort
+    @categories = Item.all.map{|i| i.category.name}.uniq.sort
+    brand_selected = params[:itemBrand].present? ? params[:itemBrand] : @brands
+    category_selected = params[:itemCategory].present? ? params[:itemCategory] : @categories
+    promo_only = params[:promo_only].present? ? params[:promo_only]=='on' : false
+    @items = Item.by_brand(brand_selected).by_category(category_selected).by_promo(promo_only)
   end
 
   # GET /items/1 or /items/1.json

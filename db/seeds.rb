@@ -8,10 +8,6 @@
 
 
 
-Category.find_or_create_by(name:'Category 1') unless Category.find_by(name: 'Category 1')
-Category.find_or_create_by(name:'Category 2') unless Category.find_by(name: 'Category 2')
-Category.find_or_create_by(name:'Category 3') unless Category.find_by(name: 'Category 3')
-
 %w[admin guest customer service].each do |role|
   Role.find_or_create_by({ name: role }) unless Role.find_by(name: role)
 end
@@ -25,6 +21,10 @@ end
   DeliveryMode.find_or_create_by({ name: mode })
 end
 
+5.times do |n|
+  Category.find_or_create_by(name:"Category #{n + 1}") unless Category.find_by(name: "Category #{n+1}")
+end
+
 20.times do |n|
   brand_name = Faker::Appliance.brand
   Brand.find_or_create_by(name:brand_name) unless Brand.find_by(name: brand_name)
@@ -34,3 +34,7 @@ end
   item_name = Faker::Appliance.equipment
   Item.create(name:item_name, price:rand(500)+1,category_id:rand(Category.count-1)+1,brand_id:rand(Brand.count-1)+1,description:BetterLorem.w(50,true),quantity:rand(200)+1)
 end
+
+Promotion.feed_csv
+
+User.create(email:'test@gmail.com',password:'tester',role_id:1)

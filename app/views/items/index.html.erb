@@ -1,6 +1,7 @@
 <!-- lib/templates/erb/scaffold/index.html.erb.tt -->
 <% if @items.exists? %>
-<div class=" mx-auto my-8 px-4">
+<div class=" mx-auto my-5 px-4">
+  <%= render 'filters_form' %>
   <div class="items-container">
     <% @items.each do |item| %>
       <div class="item-card card">
@@ -15,12 +16,16 @@
               <span class="text-secondary" style="text-decoration:line-through;"><%= number_to_currency(item.price,unit:'RM') %></span>
             <%end%>
             <span> per item</span>
+            <% if item.latest_promotion.gift.present?%>
+              <br/><small>gift</small>
+            <% end %>
           </div>
         <%else %>
           <div>
             <span class="font-weight-bold"><%= number_to_currency(item.price,unit:'RM') %></span>
             <span> per item</span></div>
         <%end%>
+
         <p class="p-0 m-0">Availability: <%="#{item.quantity} in stock"%></p>
         <%= form_for @order_item, remote: true,html:{class:' add-to-cart-form'}  do |f|%>
           <%= f.hidden_field :item_id, :value => item.id %>

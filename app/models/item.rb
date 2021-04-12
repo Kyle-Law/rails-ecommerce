@@ -5,6 +5,10 @@ class Item < ApplicationRecord
   has_many :order_items, dependent: :destroy
   before_save :set_attributes
 
+  scope :by_brand, -> (brand_name) { where(brand:Brand.where(name:brand_name))}
+  scope :by_category, -> (category_name) { where(category:Category.where(name:category_name))}
+  scope :by_promo, -> (boolean) { where(is_promo: boolean) }
+
   def biggest_discount
     current_all_promotions.map { |p| p.discount_fixed || (p.discount_percent && price * p.discount_percent / 100) || 0 }.max.to_i
   end
@@ -31,7 +35,7 @@ class Item < ApplicationRecord
   end
 
   def percent?
-    !latest_promotion.discount_percent.present? && latest_promotion.discount_percent.positive?
+    latest_promotion.discount_percent.present? && latest_promotion.discount_percent.positive?
   end
 
   def gift?
@@ -51,10 +55,6 @@ class Item < ApplicationRecord
       self[:is_promo] = false
     end
   end
-
-
-
-
 
   def set_attributes
     self[:is_promo] = under_promotion?

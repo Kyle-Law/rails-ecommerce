@@ -1,0 +1,21 @@
+<div class="forms-container">
+  <form action="/" method="GET" class="form-item" >
+    <select name="itemBrand" id="itemBrand">
+      <option value="">Any brand</option>
+      <% @brands.each do |brand|%>
+        <option value="<%=brand%>" <%=params[:itemBrand] == brand ? 'selected' : '' %>><%= brand %></option>
+      <%end%>
+    </select>
+    <select name="itemCategory" id="itemCategory">
+      <option value="">Any category</option>
+      <% @categories.each do |category|%>
+        <option value="<%=category%>" <%=params[:itemCategory] == category ? 'selected' : '' %>><%= category %></option>
+      <%end%>
+    </select>
+    <button class="btn btn-primary" id="searchSubmitBtn">Search</button>
+    <div class="text-left my-2">
+      <input type="checkbox" name="promo_only" id="promo_only" class="cursor-pointer" <%= params[:promo_only] == 'on' ? 'checked' : ''%>>
+      <label for="promo_only" class="text-grey pl-1 pr-2 cursor-pointer">Promotion</label>
+    </div>
+  </form>
+</div>
