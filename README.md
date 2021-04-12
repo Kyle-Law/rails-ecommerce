@@ -1,17 +1,20 @@
 # rails-ecommerce
 
-> A simple ecommerce site built with Ruby on Rails
+> A simple ecommerce site built with Ruby on Rails from scratch
 
+## Entity Relationship Diagram
+![image](https://user-images.githubusercontent.com/55923773/114358670-bd228f80-9ba5-11eb-8f54-7dde92cba214.png)
 
 
 ## Live Links & Walkthrough Video
 
-- [Live Link]()
-- [Walkthrough Video]()
+- [Live Link](https://kyle-ecommerce.herokuapp.com/)
+- [Walkthrough Video](https://www.loom.com/share/49162b8e925b4b66bae6f157c3228817)
 
 ## Project Snapshots
 
-![image]()
+![image](https://user-images.githubusercontent.com/55923773/114358898-070b7580-9ba6-11eb-89c0-d180dc048406.png)
+)
 
 ## Built With
 
@@ -19,31 +22,9 @@
 - JavaScript
 - RSpec
 
-## Git Commit References
-
-|No|Prefix|Description|Status|
-|---|---|---|---|
-|1| FE1 | Feature 1 - Authentication with Devise |Pending|
-|2| FE2 | Feature 2 - Add-To-Cart |Pending|
-|3| FE3 | Feature 3 - Credit Checkout|Pending|
-|3| FE4 | Feature 4 - Promotion |Pending|
-|4| FE5 | Feature 5 - Authorization with Pundit|Pending|
-|5| FE6 | Feature 6 - Filter with Brand & Category |Pending|
-|7| FE7 | Feature 7 - Light/Dark theme|Pending|
-|8| FE8 | Feature 8 - Notification with Sendgrid (Email) |Pending|
-|9| FE9 | Feature 9 - Payment with Paypal |-|
-|10| FE10 | Feature 10 - OAuth with Google |-|
-
-## Testing
-
-1. Clone the project and cd to private-events
-2. Run `yarn install --check-files` to check and update yarn packages
-3. Run 'rspec'
-4. <> examples, 0 failures should be shown.
-
 ## Deployment
 
-1. Git clone this repo and cd the to the `articles` directory.
+1. Git clone this repo and cd the to the `rails-ecommerce` directory.
 2. Run `bundle install` in command line to install gems.
 3. Run `rails db:setup` to migrate and seed database.
 4. Run `rail s` and open browser with `http://localhost:3000/`.
@@ -51,8 +32,8 @@
 
 ### Main Features
 
-1. Dark/Light mode toggling.
-2. 
+1. Add To Cart
+2. Multi-Tier, Mix & Match voucherless promotions
 
 ## Authors
 
