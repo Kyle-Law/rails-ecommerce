@@ -1,10 +1,9 @@
 # rails-ecommerce
 
-> A simple ecommerce site built with Ruby on Rails from scratch
+> A simple ecommerce site built from scratch with Ruby on Rails. 
 
 ## Entity Relationship Diagram
 ![image](https://user-images.githubusercontent.com/55923773/114358670-bd228f80-9ba5-11eb-8f54-7dde92cba214.png)
-
 
 ## Live Links & Walkthrough Video
 
@@ -14,13 +13,15 @@
 ## Project Snapshots
 
 ![image](https://user-images.githubusercontent.com/55923773/114358898-070b7580-9ba6-11eb-89c0-d180dc048406.png)
-)
+
+## Documents
+- [Rails CLI Commands](./planner.sh)
+- [Rails Scaffold Templates](lib/templates/erb/scaffold)
 
 ## Built With
 
 - Ruby on Rails
 - JavaScript
-- RSpec
 
 ## Deployment
 
