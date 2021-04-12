@@ -40,6 +40,26 @@ class OrdersController < ApplicationController
     end
   end
 
+  def confirm
+    if current_order.total_price.positive?
+      # To keep track of the order
+      id = current_order.id
+
+      # Once is_ordered == true, current_order is no longer the order.
+      # That's why `order_date` update has to be prior to `is_ordered` update
+      current_order.update(order_date: Time.now)
+      current_order.update(status: 'Processing')
+
+      @order = Order.find(id)
+      session.delete(:order_id)
+
+      @orders = Order.all
+      render 'index' and return
+    else
+      redirect_to '/carts'
+    end
+  end
+
   # PATCH/PUT /orders/1 or /orders/1.json
   def update
     respond_to do |format|
@@ -54,11 +74,12 @@ class OrdersController < ApplicationController
   end
 
   # DELETE /orders/1 or /orders/1.json
-  def destroy
-    @order.destroy
-    respond_to do |format|
-      format.html { redirect_to orders_url, notice: "Order was successfully destroyed." }
-      format.json { head :no_content }
+  def update
+    if params[:id]
+      order = Order.find(params[:id])
+      order.update(order_params)
+    else
+      current_order.update(order_params)
     end
   end
 

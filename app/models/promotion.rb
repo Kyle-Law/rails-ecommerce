@@ -16,8 +16,8 @@ class Promotion < ApplicationRecord
 
   def prompt_prize
     return "free #{gift}" if has_gift?
-    return "USD #{discount_fixed}.00 discount per tyre" if has_fixed_discount?
-    return "#{discount_percent}% discount per tyre" if has_percent_discount?
+    return "USD #{discount_fixed}0 discount per item" if has_fixed_discount?
+    return "#{discount_percent}% discount per item" if has_percent_discount?
 
     "BUY #{min} FREE 1"
   end

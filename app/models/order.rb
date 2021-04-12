@@ -4,6 +4,10 @@ class Order < ApplicationRecord
   has_many :order_items, dependent: :destroy
   before_save :set_attributes
 
+  def idify
+    "RAILS_CONF_#{id}"
+  end
+
   def total_quantity
     order_items.map(&:quantity).sum
   end

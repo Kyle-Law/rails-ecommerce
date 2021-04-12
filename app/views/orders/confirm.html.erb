@@ -69,11 +69,6 @@
     </div>
     <div class="card-body">
       <p><strong>Delivery mode:</strong> <%=@order.delivery_mode.name%></p>
-      <%if @order.delivery_mode.name.include?('Self-Collect')%>
-        <p><strong>Self-collect time: <span>Estimated <%= show_delivery_time(@order) %></strong></p>
-      <%else%>
-        <p><strong>Delivery time:</strong> <span>Estimated <%= show_delivery_time(@order) %></span></p>
-      <%end%>
       <p><strong>Contact number:</strong> <%=@order.notification_phone_number%></p>
       <p><strong>Email:</strong> <%=@order.user.email%></p>
       <p><strong>Address:</strong> <%=@order.shipping_address%></p>
@@ -84,6 +79,6 @@
   </div>
   <div class="mb-5 align-items-center d-flex flex-column">
     <h4 class="my-4 text-center">Questions? Ask our team of experts</h4>
-    <%= mail_to "htthsupport@htgroup.com.my","Contact us", class:'h5 link'%>
+    <%= mail_to "kylelaw1121@gmail.com","Contact us", class:'h5 link'%>
   </div>
 </div>

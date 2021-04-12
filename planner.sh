@@ -38,3 +38,4 @@ rails g migration AddAttributesToPromotions item_categories item_brands item_key
 
 # Additional migrations
 rails g migration AddIsPromoToItems is_promo:boolean
+rails g migration AddOrderDateToOrders order_date:datetime

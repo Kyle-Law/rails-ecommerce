@@ -17,12 +17,3 @@ let phoneErrorMessage = document.getElementById('phoneErrorMessage')
 let infoPhoneNumber = document.getElementById('infoPhoneNumber')
 let commentText = document.getElementById('commentText')
 let commentInput = document.getElementById('order_remarks')
-let addressesData = JSON.parse(shippingContainer.getAttribute('data'))
-
-// Helper functions
-// *** isSelfCollect and isStandard logics are tied to deliveryMode ID. careful.
-
-// Event Listeners
-
-
-// On Load
