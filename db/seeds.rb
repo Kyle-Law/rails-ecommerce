@@ -37,4 +37,4 @@ end
 
 Promotion.feed_csv
 
-User.create(email:'test@gmail.com',password:'tester',role_id:1)
+User.create(email:'test@gmail.com',password:'tester',role_id:1,show_price:true)
