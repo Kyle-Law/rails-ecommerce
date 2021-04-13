@@ -12,9 +12,9 @@
         <p class="p-0 m-0">Description: <small class="text-secondary"><%=truncate(item.description,length:100)%></small></p>
         <% if item.under_promotion?%>
           <div>
-            <span class="font-weight-bold mr-1"><%=number_to_currency(item.price_after_biggest_discount,unit:'RM')%></span>
+            <span class="font-weight-bold mr-1"><%=number_to_currency(item.price_after_biggest_discount,unit:'USD')%></span>
             <%if item.discount? || item.percent?%>
-              <span class="text-secondary" style="text-decoration:line-through;"><%= number_to_currency(item.price,unit:'RM') %></span>
+              <span class="text-secondary" style="text-decoration:line-through;"><%= number_to_currency(item.price,unit:'USD') %></span>
             <%end%>
             <span> per item</span>
             <% if item.latest_promotion.gift.present?%>
@@ -23,7 +23,7 @@
           </div>
         <%else %>
           <div>
-            <span class="font-weight-bold"><%= number_to_currency(item.price,unit:'RM') %></span>
+            <span class="font-weight-bold"><%= number_to_currency(item.price,unit:'USD') %></span>
             <span> per item</span></div>
         <%end%>
 
