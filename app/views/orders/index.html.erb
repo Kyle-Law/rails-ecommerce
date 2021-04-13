@@ -44,15 +44,15 @@
                 </td>
                 <td><%= order_item.quantity %></td>
                 <% if user_signed_in? && current_user.show_price%>
-                  <td><%= number_to_currency(order_item.unit_price || 0,unit:'RM') %></td>
+                  <td><%= number_to_currency(order_item.unit_price || 0,unit:'USD') %></td>
                   <td>
                     <% if order_item.unit_discount > 0 %>
-                      <%= number_to_currency(order_item.unit_discount || 0,unit:'RM') %>
+                      <%= number_to_currency(order_item.unit_discount || 0,unit:'USD') %>
                     <% else %>
                       -
                     <% end %>
                   </td>
-                  <td><%= number_to_currency(order_item.sub_total || 0,unit:'RM') %></td>
+                  <td><%= number_to_currency(order_item.sub_total || 0,unit:'USD') %></td>
                 <% end %>
               </tr>
             <% end %>
@@ -62,7 +62,7 @@
                 <td></td>
                 <td></td>
                 <td></td>
-                <td class="font-weight-bold"><%= number_to_currency(order.total_price || 0,unit:'RM')%></td>
+                <td class="font-weight-bold"><%= number_to_currency(order.total_price || 0,unit:'USD')%></td>
               </tr>
             <% end %>
           </tbody>

@@ -1,6 +1,6 @@
 # rails-ecommerce
 
-> A simple ecommerce site built from scratch with Ruby on Rails. 
+> A simple ecommerce site built from scratch with Ruby on Rails.
 
 ## Entity Relationship Diagram
 ![image](https://user-images.githubusercontent.com/55923773/114358670-bd228f80-9ba5-11eb-8f54-7dde92cba214.png)
@@ -41,7 +41,6 @@
 👤 **Kyle Law**
 
 - Github: [@Kyle-Law](https://github.com/Kyle-Law)
-- Twitter: [@Kyle-Law](https://twitter.com/ZhunKhing)
 - Linkedin: [Kyle law](https://www.linkedin.com/in/kyle-lawzhunkhing/)
 
 ## 🤝 Contributing

@@ -20,17 +20,17 @@
             <% if user_signed_in? && current_user.show_price%>
               <% if order_item.item.under_promotion?%>
                 <%if order_item.promo_applying%>
-                  <h6 class=""><span class="mr-1 font-weight-bold"><%= number_to_currency(order_item.promo_applying.discount_fixed || order_item.promo_applying.discount_percent ? order_item.item.price - order_item.unit_discount : order_item.item.price,unit:'RM') %></span>
+                  <h6 class=""><span class="mr-1 font-weight-bold"><%= number_to_currency(order_item.promo_applying.discount_fixed || order_item.promo_applying.discount_percent ? order_item.item.price - order_item.unit_discount : order_item.item.price,unit:'USD') %></span>
                     <%if order_item.promo_applying.discount_fixed || order_item.promo_applying.discount_percent%>
-                      <span class="text-secondary" style="text-decoration:line-through;"><%= number_to_currency(order_item.item.price,unit:'RM') %></span>
+                      <span class="text-secondary" style="text-decoration:line-through;"><%= number_to_currency(order_item.item.price,unit:'USD') %></span>
                     <%end%>
                     per item
                   </h6>
                 <%else%>
-                  <h6 class=""><%= number_to_currency(order_item.item.price,unit:'RM') %> per item</h6>
+                  <h6 class=""><%= number_to_currency(order_item.item.price,unit:'USD') %> per item</h6>
                 <%end%>
               <%else %>
-                <h6 class=""><%= number_to_currency(order_item.item.price,unit:'RM') %> per item</h6>
+                <h6 class=""><%= number_to_currency(order_item.item.price,unit:'USD') %> per item</h6>
               <%end%>
             <% end %>
             <div class="">
@@ -53,11 +53,11 @@
             <div class="mt-4">
               <% if user_signed_in? && current_user.show_price%>
                 <% if order_item.item.under_promotion? && order_item.promo_applying && order_item.item.discount?%>
-                  <h6 class="cart-item-subtotal ">Subtotal: <span class=""><%= number_to_currency(order_item.sub_total.to_f,unit:'RM') %></span> <span class="text-secondary" style="text-decoration:line-through;"><%= number_to_currency(order_item.quantity.to_f * order_item.unit_price.to_f,unit:'RM') %></span></h6>
+                  <h6 class="cart-item-subtotal ">Subtotal: <span class=""><%= number_to_currency(order_item.sub_total.to_f,unit:'USD') %></span> <span class="text-secondary" style="text-decoration:line-through;"><%= number_to_currency(order_item.quantity.to_f * order_item.unit_price.to_f,unit:'USD') %></span></h6>
                 <%elsif order_item.item.under_promotion? && order_item.promo_applying%>
-                  <h6 class="cart-item-subtotal ">Subtotal: <span class=""><%= number_to_currency(order_item.sub_total.to_f,unit:'RM') %></span></h6>
+                  <h6 class="cart-item-subtotal ">Subtotal: <span class=""><%= number_to_currency(order_item.sub_total.to_f,unit:'USD') %></span></h6>
                 <%else%>
-                  <h6 class="cart-item-subtotal ">Subtotal: <%= number_to_currency(order_item.sub_total.to_f,unit:'RM') %></h6>
+                  <h6 class="cart-item-subtotal ">Subtotal: <%= number_to_currency(order_item.sub_total.to_f,unit:'USD') %></h6>
                 <%end%>
               <% end %>
               <% if order_item.promo_applying%>
